@@ -1,0 +1,69 @@
+[System]
+Name='Rating Hotel TNM'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=3
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Fasilitas'
+Range=[0 10]
+NumMFs=3
+MF1='Cukup':'gaussmf',[1.77 -0.02646]
+MF2='Baik':'gaussmf',[1.77 5]
+MF3='Lengkap':'gaussmf',[1.771 10]
+
+[Input2]
+Name='Bonus'
+Range=[0 10]
+NumMFs=3
+MF1='Tidak_ada':'gaussmf',[1.769 -1.388e-16]
+MF2='Channel_TV':'gaussmf',[1.769 5]
+MF3='Channel_TV,_dinner,_and_breakfast':'gaussmf',[1.769 10]
+
+[Input3]
+Name='Akses'
+Range=[0 10]
+NumMFs=3
+MF1='1_orang':'gaussmf',[1.769 -1.388e-16]
+MF2='2_orang':'gaussmf',[1.769 5.026]
+MF3='4_orang':'gaussmf',[1.769 10]
+
+[Output1]
+Name='Kelas_Kamar'
+Range=[0 5]
+NumMFs=3
+MF1='Standard_Room':'trimf',[-2.083 0 2.083]
+MF2='Superrior_Room':'trimf',[0.443155026455026 2.52645502645503 4.60945502645503]
+MF3='Suite_Room':'trimf',[2.917 5 7.083]
+
+[Output2]
+Name='Harga'
+Range=[0 5]
+NumMFs=3
+MF1='Murah':'trimf',[-2.083 0 2.083]
+MF2='Terjangkau':'trimf',[0.4167 2.5 4.583]
+MF3='Mahal':'trimf',[2.917 5 7.083]
+
+[Output3]
+Name='Bintang_Kamar'
+Range=[0 5]
+NumMFs=3
+MF1='3':'trimf',[-2.083 0 2.083]
+MF2='4':'trimf',[0.4167 2.5 4.583]
+MF3='5':'trimf',[2.917 5 7.083]
+
+[Rules]
+1 1 1, 1 1 1 (1) : 1
+2 1 2, 1 2 1 (1) : 1
+3 1 2, 2 2 1 (1) : 1
+3 3 3, 3 3 3 (1) : 1
+3 3 3, 2 3 2 (1) : 1
+3 1 3, 2 3 2 (1) : 1
+3 1 2, 1 2 1 (1) : 1
